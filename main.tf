@@ -3,7 +3,6 @@
 # Step 1: Validar keybase. Essa base foi criada com infos pessoais. Para testes ira funcionar normalmente.
 # Step 2: Para user de servico, alterar o campo create_access_keys para true.
 # Comando descriptografia utilizando o proprio terminal git.
-# Run command on bash "gpg --batch --gen-key key-gen-template"
 
 module "iam_groups" {
   source = "./modules/iam-groups"
@@ -15,10 +14,6 @@ module "iam_groups" {
     }
 
     G-LlabsReadonlyUsersAws = {
-      policies = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
-    }
-
-    G-AppsReadOnlyMultilogica = {
       policies = ["arn:aws:iam::aws:policy/ReadOnlyAccess"]
     }
   }
@@ -37,11 +32,11 @@ module "iam_users" {
   pgp_key               = "keybase:srvcgoodtecprd" # Usuário de servico da chave privada
 
   users_groups = {
-    "gude.santana"    = ["G-LlabsReadonlyUsersAws", "G-LlabsAdminUsersAws"]
-    "Jorge.back"      = ["G-LlabsReadonlyUsersAws", "G-LlabsAdminUsersAws"]
-    "Joao.silveira"   = ["G-LlabsReadonlyUsersAws"]
-    "app.frontend"    = ["G-LlabsAdminUsersAws"]
-    "app.backend"     = ["G-LlabsAdminUsersAws"]
+    "gude.santana"  = ["G-LlabsReadonlyUsersAws", "G-LlabsAdminUsersAws"]
+    "Jorge.back"    = ["G-LlabsReadonlyUsersAws", "G-LlabsAdminUsersAws"]
+    "Joao.silveira" = ["G-LlabsReadonlyUsersAws"]
+    "app.frontend"  = ["G-LlabsAdminUsersAws"]
+    "app.backend"   = ["G-LlabsAdminUsersAws"]
   }
 
   tags = {
